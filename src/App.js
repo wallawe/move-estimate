@@ -2,21 +2,66 @@ import React, { Component } from 'react';
 import './app.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      fromZip: "",
+      toZip: "",
+      moveSize: "1-bedroom",
+      moveDate: Date.now(),
+    }
+
+    this.update = this.update.bind(this)
+  }
+
+
+  update(e, field) {
+    this.setState({
+      [field]: e.target.value
+    })
+  }
+
+  submitForm() {
+    console.log(this.state)
+  }
+
   render() {
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-6">
-            First column
-            <p>
-              Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-            </p>
+        <h1 className="headline">Moving Cost Estimate</h1>
+        <div className="row justify-content-center">
+          <div className="col-4">
+            <label>Moving from: </label>
+            <input type="number" className="full-width" onChange={(e) => this.update(e, 'fromZip')}/>
           </div>
-          <div className="col-6">
-            Second column
-            <p>
-              Curabitur aliquet quam id dui posuere blandit. Nulla quis lorem ut libero malesuada feugiat. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Proin eget tortor risus. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus.
-            </p>
+          <div className="col-4">
+            <label>Moving to: </label>
+            <input type="number" className="full-width" onChange={(e) => this.update(e, 'toZip')}/>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-4">
+            <label>Move Size: </label>
+            <select className="move-size full-width" value={this.state.moveSize}>
+              <option value="studio">Studio</option>
+              <option value="1-bedroom">1 Bedroom</option>
+              <option value="2-bedroom">2 Bedroom</option>
+              <option value="3-bedroom">3 Bedroom</option>
+              <option value="4-bedrooms">4+ Bedrooms</option>
+            </select>
+          </div>
+          <div className="col-4">
+            <label>Move Date: </label>
+            <input type="date" className="full-width"/>
+          </div>
+        </div>
+        <div className="row justify-content-center">
+          <div className="col-8">
+            <button className="submit-btn" onClick={this.submitForm.bind(this)}>
+              Calculate Estimate
+            </button>
+
+            <h1>{this.state.fromZip}</h1>
           </div>
         </div>
       </div>

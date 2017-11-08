@@ -2607,3 +2607,13 @@ html {
 
 .invisible {
   visibility: hidden !important; }
+
+.submit-btn {
+  float: right; }
+
+.full-width {
+  display: block;
+  width: 100%; }
+
+.headline {
+  text-align: center; }
