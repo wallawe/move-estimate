@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import './app.css';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -22,7 +22,6 @@ class App extends Component {
     this.setState({
       moveDate: date
     });
-    console.log(date.toString());
   }
 
   update(e, field) {
