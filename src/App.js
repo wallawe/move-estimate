@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import './app.css';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -7,13 +11,18 @@ class App extends Component {
     this.state = {
       fromZip: "",
       toZip: "",
-      moveSize: "1-bedroom",
-      moveDate: Date.now(),
-    }
-
+      moveSize: "studio",
+      moveDate: moment(),
+    };
+    this.handleChange = this.handleChange.bind(this);
     this.update = this.update.bind(this)
   }
 
+  handleChange(date) {
+    this.setState({
+      moveDate: date
+    });
+  }
 
   update(e, field) {
     this.setState({
@@ -42,7 +51,7 @@ class App extends Component {
         <div className="row justify-content-center">
           <div className="col-4">
             <label>Move Size: </label>
-            <select className="move-size full-width" value={this.state.moveSize}>
+            <select className="move-size full-width" value={this.state.moveSize} onChange={(e) => this.update(e, 'moveSize')}>
               <option value="studio">Studio</option>
               <option value="1-bedroom">1 Bedroom</option>
               <option value="2-bedroom">2 Bedroom</option>
@@ -52,7 +61,10 @@ class App extends Component {
           </div>
           <div className="col-4">
             <label>Move Date: </label>
-            <input type="date" className="full-width"/>
+            <DatePicker
+              selected={this.state.moveDate}
+              onChange={this.handleChange}
+            />
           </div>
         </div>
         <div className="row justify-content-center">
@@ -60,8 +72,7 @@ class App extends Component {
             <button className="submit-btn" onClick={this.submitForm.bind(this)}>
               Calculate Estimate
             </button>
-
-            <h1>{this.state.fromZip}</h1>
+            <h5>{this.state.fromZip}</h5>
           </div>
         </div>
       </div>
