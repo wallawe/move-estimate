@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+
+import 'react-datepicker/dist/react-datepicker.css';
 import './app.css';
 
 class App extends Component {
@@ -8,12 +12,17 @@ class App extends Component {
       fromZip: "",
       toZip: "",
       moveSize: "1-bedroom",
-      moveDate: Date.now(),
-    }
-
+      moveDate: moment(),
+    };
+    this.handleChange = this.handleChange.bind(this);
     this.update = this.update.bind(this)
   }
 
+  handleChange(date) {
+    this.setState({
+      moveDate: date
+    });
+  }
 
   update(e, field) {
     this.setState({
@@ -52,7 +61,10 @@ class App extends Component {
           </div>
           <div className="col-4">
             <label>Move Date: </label>
-            <input type="date" className="full-width"/>
+            <DatePicker
+              selected={this.state.moveDate}
+              onChange={this.handleChange}
+            />
           </div>
         </div>
         <div className="row justify-content-center">
@@ -60,7 +72,6 @@ class App extends Component {
             <button className="submit-btn" onClick={this.submitForm.bind(this)}>
               Calculate Estimate
             </button>
-
             <h1>{this.state.fromZip}</h1>
           </div>
         </div>
