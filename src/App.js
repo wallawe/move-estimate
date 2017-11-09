@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       fromZip: "",
       toZip: "",
-      moveSize: "1-bedroom",
+      moveSize: "studio",
       moveDate: moment(),
     };
     this.handleChange = this.handleChange.bind(this);
@@ -22,6 +22,7 @@ class App extends Component {
     this.setState({
       moveDate: date
     });
+    console.log(date.toString());
   }
 
   update(e, field) {
@@ -51,7 +52,7 @@ class App extends Component {
         <div className="row justify-content-center">
           <div className="col-4">
             <label>Move Size: </label>
-            <select className="move-size full-width" value={this.state.moveSize}>
+            <select className="move-size full-width" value={this.state.moveSize} onChange={(e) => this.update(e, 'moveSize')}>
               <option value="studio">Studio</option>
               <option value="1-bedroom">1 Bedroom</option>
               <option value="2-bedroom">2 Bedroom</option>
@@ -72,7 +73,7 @@ class App extends Component {
             <button className="submit-btn" onClick={this.submitForm.bind(this)}>
               Calculate Estimate
             </button>
-            <h1>{this.state.fromZip}</h1>
+            <h5>{this.state.fromZip}</h5>
           </div>
         </div>
       </div>
