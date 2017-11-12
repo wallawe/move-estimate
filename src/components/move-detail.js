@@ -8,10 +8,10 @@ class MoveDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      fromZip: "",
-      toZip: "",
-      moveSize: "studio",
-      moveDate: moment(),
+      fromZip: '',
+      toZip: '',
+      moveSize: 'studio',
+      moveDate: moment()
     };
     this.handleChange = this.handleChange.bind(this);
     this.update = this.update.bind(this)
@@ -25,12 +25,14 @@ class MoveDetail extends Component {
 
   update(e, field) {
     this.setState({
-      [field]: e.target.value
+      [field]: e.target.value,
     })
   }
 
-  submitForm() {
-    console.log(this.state)
+  formIsInvalid() {
+    // using toString below because you can't check 'length' on a number/integer
+    // returns a boolean (true/false) to disable or enable the 'continue' button
+    return this.state.fromZip.toString().length < 5;
   }
 
   render() {
@@ -39,11 +41,11 @@ class MoveDetail extends Component {
         <div className="row justify-content-center">
           <div className="col-4">
             <label>Moving from: </label>
-            <input type="number" className="full-width" onChange={(e) => this.update(e, 'fromZip')}/>
+            <input type="number" placeholder="Zip Code" className="full-width" onChange={(e) => this.update(e, 'fromZip')}/>
           </div>
           <div className="col-4">
             <label>Moving to: </label>
-            <input type="number" className="full-width" onChange={(e) => this.update(e, 'toZip')}/>
+            <input type="number" className="full-width" placeholder="Zip Code (optional)" onChange={(e) => this.update(e, 'toZip')}/>
           </div>
         </div>
         <div className="row justify-content-center">
@@ -60,6 +62,8 @@ class MoveDetail extends Component {
           <div className="col-4">
             <label>Move Date: </label>
             <DatePicker
+              className="full-width"
+              minDate={moment()}
               selected={this.state.moveDate}
               onChange={this.handleChange}
             />
@@ -67,10 +71,9 @@ class MoveDetail extends Component {
         </div>
         <div className="row justify-content-center">
           <div className="col-8">
-            <button className="submit-btn" onClick={this.submitForm.bind(this)}>
-              Calculate Estimate
+            <button className="submit-btn" onClick={() => this.props.changeStep(2,1)} disabled={this.formIsInvalid()}>
+              Continue
             </button>
-            <h5>{this.state.fromZip}</h5>
           </div>
         </div>
       </div>

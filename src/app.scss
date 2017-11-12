@@ -12,3 +12,8 @@
 .headline {
   text-align: center;
 }
+
+// override datepicker's native styles
+.react-datepicker-wrapper, .react-datepicker__input-container {
+  display: block;
+}
