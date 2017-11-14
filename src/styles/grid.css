@@ -31,14 +31,6 @@ html {
   .container {
     max-width: 720px; } }
 
-@media (min-width: 992px) {
-  .container {
-    max-width: 960px; } }
-
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1140px; } }
-
 .container-fluid {
   width: 100%;
   padding-right: 15px;
