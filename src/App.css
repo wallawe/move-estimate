@@ -1,3 +1,39 @@
+* {
+  vertical-align: top;
+  box-sizing: border-box; }
+
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif; }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0; }
+
+span {
+  display: inline-block; }
+
+ol, ul {
+  padding: 0;
+  margin: 0; }
+
+ul li {
+  list-style: none; }
+
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+  border-collapse: collapse; }
+
+/* must have mixins: respond-to(mobile), vertical center, top-x/bottom-x */
 /*!
  * Bootstrap Grid v4.0.0-beta.2 (https://getbootstrap.com)
  * Copyright 2011-2017 The Bootstrap Authors
@@ -2608,15 +2644,109 @@ html {
 .invisible {
   visibility: hidden !important; }
 
-.submit-btn {
-  float: right; }
-
 .full-width {
   display: block;
   width: 100%; }
 
-.headline {
-  text-align: center; }
+.headlines {
+  text-align: center;
+  padding: 120px 0 80px 0; }
+  .headlines h1 {
+    font-size: 46px;
+    font-weight: 800;
+    color: #1F7AA0;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.2); }
+  .headlines h2 {
+    font-size: 38px;
+    color: #333333; }
+
+.form {
+  background: #ffffff;
+  border-top: 3px solid #1F7AA0;
+  border-bottom: 3px solid #1F7AA0;
+  border-radius: 3px;
+  box-shadow: 0 0 20px rgba(51, 51, 51, 0.2);
+  padding-bottom: 30px; }
+  .form header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #eeeeee;
+    background: #eeeeee;
+    margin-bottom: 20px; }
+    .form header .progress {
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      color: #555555;
+      margin-right: 5px;
+      line-height: 1.3; }
+  .form .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #555555;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 5px; }
+  .form .input-field, .form .dropdown {
+    border: 2px solid #eeeeee;
+    font-size: 16px;
+    line-height: 1;
+    padding: 12px;
+    outline: none;
+    display: block;
+    width: 100%;
+    background: #ffffff;
+    border-radius: 3px;
+    margin-bottom: 20px; }
+  .form .dropdown {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    font-family: 'Open Sans', sans-serif;
+    background-image: url(./images/chevron-down.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+    background-position: right 10px top 15px;
+    background-size: 15px; }
+
+.circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #eeeeee;
+  margin-left: 5px; }
+  .circle.filled {
+    background: #1F7AA0; }
+
+.btn {
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  padding: 12px 20px;
+  background: #1F7AA0;
+  color: #ffffff;
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  border-radius: 3px; }
+  .btn:hover {
+    background: #1b6a8b; }
+  .btn:disabled {
+    background: #ccc;
+    cursor: default; }
+
+.bg {
+  background: url(./images/road.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh; }
 
 .react-datepicker-wrapper, .react-datepicker__input-container {
   display: block; }
