@@ -18,7 +18,9 @@ class App extends Component {
       moveDate: moment(),
       fullName: '',
       email: '',
-      phoneNo: ''
+      phoneNo: '',
+      storageRequired: 'no',
+      storageDuration: 0
     };
 
     // this = {
@@ -29,20 +31,30 @@ class App extends Component {
     // }
 
     this.update = this.update.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleRadioChange = this.handleRadioChange.bind(this);
     this.changeStep = this.changeStep.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
 
-  handleChange(date) {
+  handleDateChange(date) {
     this.setState({
       moveDate: date
     });
   }
 
-  update(e, field) {
+  handleRadioChange(e) {
+    console.log(e.target.value)
     this.setState({
-      [field]: e.target.value,
+      storageRequired: e.target.value
+    });
+  }
+
+  update(e, field) {
+    // the slider update function passes in the value as e instead of e.target.value, hence the next line
+    const val = (e.target && e.target.value) ? e.target.value : e;
+    this.setState({
+      [field]: val,
     })
   }
 
@@ -69,7 +81,7 @@ class App extends Component {
         </div>
         <div className="form">
           <header>
-            <h3>Let's Get Started!</h3>
+            <h3>Let's Get Started! {this.state.storageDuration}</h3>
             <div>
               <span className="progress">step {currentStep === 1 ? '1' : '2'} of 2</span>
               <span className={`circle ${currentStep === 1 && 'filled'}`}></span>
@@ -80,13 +92,11 @@ class App extends Component {
           {
             this.state.showStep1 &&
             <MoveDetail
+              {...this.state}
               changeStep={this.changeStep}
-              fromZip={this.state.fromZip}
-              toZip={this.state.toZip}
-              moveSize={this.state.moveSize}
-              moveDate={this.state.moveDate}
+              handleRadioChange={this.handleRadioChange}
               update={this.update}
-              handleChange={this.handleChange} />
+              handleDateChange={this.handleDateChange} />
           }
           {
             this.state.showStep2 &&
