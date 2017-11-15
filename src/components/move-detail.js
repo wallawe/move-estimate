@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import Slider from 'rc-slider';
+import Tooltip from 'rc-tooltip';
 
+import 'rc-slider/assets/index.css';
+import 'rc-tooltip/assets/bootstrap.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
-class MoveDetail extends Component {
+const Handle = Slider.Handle;
 
+const handle = (props) => {
+  const { value, dragging, index, ...restProps } = props;
+  return (
+    <Tooltip
+      prefixCls="rc-slider-tooltip"
+      overlay={`${value} months`}
+      visible={true}
+      placement="bottom"
+      key={index}>
+      <Handle value={value} {...restProps} />
+    </Tooltip>
+  );
+};
+
+class MoveDetail extends Component {
 
   formIsInvalid() {
     // using toString below because you can't check 'length' on a number/integer
@@ -16,7 +35,7 @@ class MoveDetail extends Component {
   render() {
     return (
       <div className="container">
-        <div className="row justify-content-center">
+        <div className="row">
           <div className="col-6">
             <label className="label">Moving from: </label>
             <input type="number" placeholder="Zip Code" className="input-field" onChange={(e) => this.props.update(e, 'fromZip')}/>
@@ -26,7 +45,37 @@ class MoveDetail extends Component {
             <input type="number" className="input-field" placeholder="Zip Code (optional)" onChange={(e) => this.props.update(e, 'toZip')}/>
           </div>
         </div>
-        <div className="row justify-content-center">
+        <div className="row">
+          <div className="col-6">
+            <p>Will you need storage in the interum?</p>
+            <label className="label">
+              <input type="radio"
+                     value="no"
+                     checked={this.props.storageRequired === 'no'}
+                     onChange={(e) => this.props.handleRadioChange(e) } />
+              No
+            </label>
+            <label className="label">
+              <input type="radio"
+                     value="yes"
+                     checked={this.props.storageRequired === 'yes'}
+                     onChange={(e) => this.props.handleRadioChange(e) } />
+              Yes
+            </label>
+          </div>
+          <div className="col-6">
+            {
+              this.props.storageRequired === 'yes' &&
+              <Slider
+                min={0}
+                max={36}
+                defaultValue={6}
+                handle={handle}
+                onChange={(e) => this.props.update(e, 'storageDuration')} />
+            }
+          </div>
+        </div>
+        <div className="row">
           <div className="col-6">
             <label className="label">Move Size: </label>
             <select className="dropdown" value={this.props.moveSize} onChange={(e) => this.props.update(e, 'moveSize')}>
@@ -47,7 +96,7 @@ class MoveDetail extends Component {
             />
           </div>
         </div>
-        <div className="row justify-content-center">
+        <div className="row">
           <div className="col-12">
             <button className="btn pull-right" onClick={() => this.props.changeStep(2,1)} disabled={this.formIsInvalid()}>
               Continue
