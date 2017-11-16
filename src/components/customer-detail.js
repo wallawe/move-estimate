@@ -8,17 +8,17 @@ class CustomerDetail extends Component {
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-6">
-            <label className="label">Full Name </label>
+            <label className="label">Full Name</label>
             <input type="text" className="input-field" onChange={(e) => this.props.update(e, 'fullName')}/>
           </div>
           <div className="col-6">
-            <label className="label">Email Addresss: </label>
+            <label className="label">Email Addresss</label>
             <input type="text" className="input-field" onChange={(e) => this.props.update(e, 'email')}/>
           </div>
         </div>
         <div className="row">
           <div className="col-6">
-            <label className="label">Phone: </label>
+            <label className="label">Phone</label>
             <input type="number" className="input-field" onChange={(e) => this.props.update(e, 'phoneNo')}/>
           </div>
         </div>
