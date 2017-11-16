@@ -37,21 +37,22 @@ $gray-3: #333333;
 }
 
 .form {
-  background: $white;
+  background: #f9f9f9;
   border-top: 3px solid $aqua;
   border-bottom: 3px solid $aqua;
   border-radius: 3px;
   box-shadow: 0 0 20px rgba($gray-3, 0.2);
-  padding-bottom: 30px;
+  padding-bottom: 40px;
+  margin-bottom: 100px;
 
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid $gray-e;
-    background: $gray-e;
-    margin-bottom: 20px;
+    padding: 30px;
+    border-bottom: 2px solid $gray-e;
+    background: $white;
+    margin-bottom: 40px;
 
     .progress {
       text-transform: uppercase;
@@ -63,27 +64,50 @@ $gray-3: #333333;
     }
   }
 
+  main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .label {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: $gray-5;
-    letter-spacing: 1px;
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: 400;
+    color: #777;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
+
+    &.label-question {
+      margin-bottom: 13px;
+      text-transform: none;
+      line-height: 1.3;
+    }
+
+    &.label-radio {
+      display: inline-block;
+      margin-right: 20px;
+      line-height: 1.3;
+      margin-bottom: 30px;
+      cursor: pointer;
+
+      input[type=radio] {
+        margin-right: 5px;
+      }
+    }
   }
 
   .input-field, .dropdown {
-    border: 2px solid $gray-e;
+    border: 1px solid $gray-e;
+    border-bottom: 3px solid $gray-e;
     font-size: 16px;
     line-height: 1;
-    padding: 12px;
+    padding: 15px 10px;
     outline: none;
     display: block;
     width: 100%;
     background: $white;
     border-radius: 3px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
 
   .dropdown {
@@ -94,7 +118,7 @@ $gray-3: #333333;
     background-image: url(./images/chevron-down.png);
     background-repeat: no-repeat;
     cursor: pointer;
-    background-position: right 10px top 15px;
+    background-position: right 10px top 20px;
     background-size: 15px;
   }
 }
@@ -106,6 +130,7 @@ $gray-3: #333333;
   background: $white;
   border: 1px solid $gray-e;
   margin-left: 5px;
+  background: $gray-e;
 
   &.filled {
     background: $aqua;
