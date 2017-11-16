@@ -94,7 +94,7 @@ class MoveDetail extends Component {
               className="input-field"
               minDate={moment()}
               selected={this.props.moveDate}
-              onChange={this.props.handleChange}
+              onChange={this.props.handleDateChange}
             />
           </div>
         </div>
