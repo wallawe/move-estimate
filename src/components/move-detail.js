@@ -70,7 +70,7 @@ class MoveDetail extends Component {
                 <Slider
                   min={0}
                   max={36}
-                  defaultValue={6}
+                  defaultValue={this.props.storageDuration}
                   handle={handle}
                   onChange={(e) => this.props.update(e, 'storageDuration')} />
               </div>

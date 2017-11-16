@@ -157,6 +157,12 @@ $gray-3: #333333;
     background: #ccc;
     cursor: default;
   }
+
+  &.btn-secondary {
+    background: transparent;
+    border: 1px solid $aqua;
+    color: $aqua;
+  }
 }
 
 

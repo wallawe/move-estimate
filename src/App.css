@@ -2762,6 +2762,10 @@ html {
   .btn:disabled {
     background: #ccc;
     cursor: default; }
+  .btn.btn-secondary {
+    background: transparent;
+    border: 1px solid #1F7AA0;
+    color: #1F7AA0; }
 
 .bg {
   background: url(./images/road.jpg);

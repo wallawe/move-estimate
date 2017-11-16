@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import axios from 'axios';
 import MoveDetail from './components/move-detail';
 import CustomerDetail from './components/customer-detail';
 
@@ -20,7 +21,7 @@ class App extends Component {
       email: '',
       phoneNo: '',
       storageRequired: 'no',
-      storageDuration: 0
+      storageDuration: 6
     };
 
     this.update = this.update.bind(this);
@@ -46,6 +47,7 @@ class App extends Component {
   update(e, field) {
     // the slider update function passes in the value as e instead of e.target.value, hence the next line
     const val = (e.target && e.target.value) ? e.target.value : e;
+
     this.setState({
       [field]: val,
     })
@@ -55,11 +57,33 @@ class App extends Component {
     this.setState({
       [`showStep${toStep}`]: true,
       [`showStep${fromStep}`]: false,
-    })
+    });
   }
 
   submitForm() {
-    console.log(this.state)
+    let requestInfo = {...this.state};
+
+    delete requestInfo.showStep1;
+    delete requestInfo.showStep2;
+
+    if (requestInfo.storageRequired === 'no') {
+        requestInfo.storageDuration = 0;
+    }
+
+    const options = {
+      url: 'http://www.findlayluxurymoving.com/quotes/new',
+      method: 'POST',
+      params: requestInfo
+    }
+
+    axios
+      .request(options)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   render() {
