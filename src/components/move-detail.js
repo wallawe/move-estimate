@@ -9,7 +9,6 @@ import 'rc-tooltip/assets/bootstrap.css';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Handle = Slider.Handle;
-
 const handle = (props) => {
   const { value, dragging, index, ...restProps } = props;
   return (
@@ -51,25 +50,30 @@ class MoveDetail extends Component {
       <div className="container">
         <div className="row">
           <div className="col-6">
-            <label className="label">Moving from: </label>
+            <label className="label">Moving from</label>
             <input type="number" placeholder="Zip Code" className="input-field" onChange={(e) => this.props.update(e, 'fromZip')}/>
           </div>
           <div className="col-6">
-            <label className="label">Moving to: </label>
+            <label className="label">Moving to</label>
             <input type="number" className="input-field" placeholder="Zip Code (optional)" onChange={(e) => this.props.update(e, 'toZip')}/>
           </div>
         </div>
         <div className="row">
           <div className="col-6">
+<<<<<<< HEAD
             <p>Will you need storage in the interim?</p>
             <label className="label">
+=======
+            <label className="label label-question">Will you need storage in the interim?</label>
+            <label className="label label-radio">
+>>>>>>> master
               <input type="radio"
                      value="no"
                      checked={this.props.storageRequired === 'no'}
                      onChange={(e) => this.props.handleRadioChange(e) } />
               No
             </label>
-            <label className="label">
+            <label className="label label-radio">
               <input type="radio"
                      value="yes"
                      checked={this.props.storageRequired === 'yes'}
@@ -80,28 +84,31 @@ class MoveDetail extends Component {
           <div className="col-6">
             {
               this.props.storageRequired === 'yes' &&
-              <Slider
-                min={0}
-                max={36}
-                defaultValue={6}
-                handle={handle}
-                onChange={(e) => this.props.update(e, 'storageDuration')} />
+              <div>
+                <label className="label label-question">How long?</label>
+                <Slider
+                  min={0}
+                  max={36}
+                  defaultValue={this.props.storageDuration}
+                  handle={handle}
+                  onChange={(e) => this.props.update(e, 'storageDuration')} />
+              </div>
             }
           </div>
         </div>
         <div className="row">
           <div className="col-6">
-            <label className="label">Move Size: </label>
-            <Slider className='move-size'
+            <label className="label label-question">How big is your move?</label>
+            <Slider
               min={1000}
               max={10000}
               defaultValue={5000}
-              step={500}
+              step={250}
               handle={handleSize}
               onChange={(e) => this.props.update(e, 'moveSize')} />
           </div>
           <div className="col-6">
-            <label className="label">Move Date: </label>
+            <label className="label">Move Date</label>
             <DatePicker
               className="input-field"
               minDate={moment()}

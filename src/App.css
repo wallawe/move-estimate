@@ -8,6 +8,7 @@ html, body {
   line-height: 1;
   margin: 0;
   padding: 0;
+  color: #333;
   font-family: 'Open Sans', sans-serif; }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -66,6 +67,14 @@ html {
 @media (min-width: 768px) {
   .container {
     max-width: 720px; } }
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px; } }
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px; } }
 
 .container-fluid {
   width: 100%;
@@ -2659,20 +2668,21 @@ html {
   float: right; }
 
 .form {
-  background: #ffffff;
+  background: #f9f9f9;
   border-top: 3px solid #1F7AA0;
   border-bottom: 3px solid #1F7AA0;
   border-radius: 3px;
   box-shadow: 0 0 20px rgba(51, 51, 51, 0.2);
-  padding-bottom: 30px; }
+  padding-bottom: 40px;
+  margin-bottom: 100px; }
   .form header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    border-bottom: 1px solid #eeeeee;
-    background: #eeeeee;
-    margin-bottom: 20px; }
+    padding: 30px;
+    border-bottom: 2px solid #eeeeee;
+    background: #ffffff;
+    margin-bottom: 40px; }
     .form header .progress {
       text-transform: uppercase;
       font-size: 12px;
@@ -2680,25 +2690,40 @@ html {
       color: #555555;
       margin-right: 5px;
       line-height: 1.3; }
+  .form main {
+    padding-left: 20px;
+    padding-right: 20px; }
   .form .label {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #555555;
-    letter-spacing: 1px;
+    font-size: 15px;
+    text-transform: capitalize;
+    font-weight: 400;
+    color: #777;
     display: block;
-    margin-bottom: 5px; }
+    margin-bottom: 7px; }
+    .form .label.label-question {
+      margin-bottom: 13px;
+      text-transform: none;
+      line-height: 1.3; }
+    .form .label.label-radio {
+      display: inline-block;
+      margin-right: 20px;
+      line-height: 1.3;
+      margin-bottom: 30px;
+      cursor: pointer; }
+      .form .label.label-radio input[type=radio] {
+        margin-right: 5px; }
   .form .input-field, .form .dropdown {
-    border: 2px solid #eeeeee;
+    border: 1px solid #eeeeee;
+    border-bottom: 3px solid #eeeeee;
     font-size: 16px;
     line-height: 1;
-    padding: 12px;
+    padding: 15px 10px;
     outline: none;
     display: block;
     width: 100%;
     background: #ffffff;
     border-radius: 3px;
-    margin-bottom: 20px; }
+    margin-bottom: 30px; }
   .form .dropdown {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -2707,7 +2732,7 @@ html {
     background-image: url(./images/chevron-down.png);
     background-repeat: no-repeat;
     cursor: pointer;
-    background-position: right 10px top 15px;
+    background-position: right 10px top 20px;
     background-size: 15px; }
 
 .circle {
@@ -2716,7 +2741,8 @@ html {
   border-radius: 50%;
   background: #ffffff;
   border: 1px solid #eeeeee;
-  margin-left: 5px; }
+  margin-left: 5px;
+  background: #eeeeee; }
   .circle.filled {
     background: #1F7AA0; }
 
@@ -2736,6 +2762,10 @@ html {
   .btn:disabled {
     background: #ccc;
     cursor: default; }
+  .btn.btn-secondary {
+    background: transparent;
+    border: 1px solid #1F7AA0;
+    color: #1F7AA0; }
 
 .bg {
   background: url(./images/road.jpg);
