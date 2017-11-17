@@ -24,6 +24,20 @@ const handle = (props) => {
   );
 };
 
+const handleSize = (props) => {
+  const { value, dragging, index, ...restProps } = props;
+  return (
+    <Tooltip
+      prefixCls="rc-slider-tooltip"
+      overlay={`${value} Square Feet`}
+      visible={true}
+      placement="bottom"
+      key={index}>
+      <Handle value={value} {...restProps} />
+    </Tooltip>
+  );
+};
+
 class MoveDetail extends Component {
 
   formIsInvalid() {
@@ -47,7 +61,7 @@ class MoveDetail extends Component {
         </div>
         <div className="row">
           <div className="col-6">
-            <p>Will you need storage in the interum?</p>
+            <p>Will you need storage in the interim?</p>
             <label className="label">
               <input type="radio"
                      value="no"
@@ -78,13 +92,13 @@ class MoveDetail extends Component {
         <div className="row">
           <div className="col-6">
             <label className="label">Move Size: </label>
-            <select className="dropdown" value={this.props.moveSize} onChange={(e) => this.props.update(e, 'moveSize')}>
-              <option value="studio">Studio</option>
-              <option value="1-bedroom">1 Bedroom</option>
-              <option value="2-bedroom">2 Bedroom</option>
-              <option value="3-bedroom">3 Bedroom</option>
-              <option value="4-bedrooms">4+ Bedrooms</option>
-            </select>
+            <Slider className='move-size'
+              min={1000}
+              max={10000}
+              defaultValue={5000}
+              step={500}
+              handle={handleSize}
+              onChange={(e) => this.props.update(e, 'moveSize')} />
           </div>
           <div className="col-6">
             <label className="label">Move Date: </label>
@@ -92,7 +106,7 @@ class MoveDetail extends Component {
               className="input-field"
               minDate={moment()}
               selected={this.props.moveDate}
-              onChange={this.props.handleChange}
+              onChange={this.props.handleDateChange}
             />
           </div>
         </div>

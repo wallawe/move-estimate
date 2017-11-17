@@ -14,7 +14,7 @@ class App extends Component {
       showStep2: false,
       fromZip: '',
       toZip: '',
-      moveSize: 'studio',
+      moveSize: '',
       moveDate: moment(),
       fullName: '',
       email: '',
