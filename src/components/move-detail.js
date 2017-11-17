@@ -60,13 +60,8 @@ class MoveDetail extends Component {
         </div>
         <div className="row">
           <div className="col-6">
-<<<<<<< HEAD
-            <p>Will you need storage in the interim?</p>
-            <label className="label">
-=======
             <label className="label label-question">Will you need storage in the interim?</label>
             <label className="label label-radio">
->>>>>>> master
               <input type="radio"
                      value="no"
                      checked={this.props.storageRequired === 'no'}
