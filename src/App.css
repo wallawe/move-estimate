@@ -2714,7 +2714,6 @@ html {
         margin-right: 5px; }
   .form .input-field, .form .dropdown {
     border: 1px solid #eeeeee;
-    border-bottom: 3px solid #eeeeee;
     font-size: 16px;
     line-height: 1;
     padding: 15px 10px;
@@ -2724,6 +2723,8 @@ html {
     background: #ffffff;
     border-radius: 3px;
     margin-bottom: 30px; }
+    .form .input-field:focus, .form .dropdown:focus {
+      box-shadow: 0 2px 0 #eeeeee; }
   .form .dropdown {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -2734,6 +2735,14 @@ html {
     cursor: pointer;
     background-position: right 10px top 20px;
     background-size: 15px; }
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0; }
+
+input[type=number] {
+  -moz-appearance: textfield; }
 
 .circle {
   width: 14px;
@@ -2754,13 +2763,13 @@ html {
   background: #1F7AA0;
   color: #ffffff;
   text-align: center;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 16px;
   border-radius: 3px; }
   .btn:hover {
     background: #1b6a8b; }
   .btn:disabled {
-    background: #ccc;
+    background: #bbb;
     cursor: default; }
   .btn.btn-secondary {
     background: transparent;

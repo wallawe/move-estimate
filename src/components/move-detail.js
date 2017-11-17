@@ -28,7 +28,7 @@ const handleSize = (props) => {
   return (
     <Tooltip
       prefixCls="rc-slider-tooltip"
-      overlay={`${value} Square Feet`}
+      overlay={`${value} SQFT`}
       visible={true}
       placement="bottom"
       key={index}>
@@ -40,8 +40,6 @@ const handleSize = (props) => {
 class MoveDetail extends Component {
 
   formIsInvalid() {
-    // using toString below because you can't check 'length' on a number/integer
-    // returns a boolean (true/false) to disable or enable the 'continue' button
     return this.props.fromZip.toString().length < 5;
   }
 
@@ -51,11 +49,23 @@ class MoveDetail extends Component {
         <div className="row">
           <div className="col-6">
             <label className="label">Moving from</label>
-            <input type="number" placeholder="Zip Code" className="input-field" onChange={(e) => this.props.update(e, 'fromZip')}/>
+            <input
+              type="number"
+              placeholder="Zip Code"
+              value={this.props.fromZip}
+              className="input-field"
+              onChange={(e) => this.props.update(e, 'fromZip')}
+            />
           </div>
           <div className="col-6">
             <label className="label">Moving to</label>
-            <input type="number" className="input-field" placeholder="Zip Code (optional)" onChange={(e) => this.props.update(e, 'toZip')}/>
+            <input
+              type="number"
+              className="input-field"
+              placeholder="Zip Code (optional)"
+              value={this.props.toZip}
+              onChange={(e) => this.props.update(e, 'toZip')}
+            />
           </div>
         </div>
         <div className="row">
@@ -92,24 +102,24 @@ class MoveDetail extends Component {
           </div>
         </div>
         <div className="row">
+        <div className="col-6">
+          <label className="label">Move Date</label>
+          <DatePicker
+            className="input-field"
+            minDate={moment()}
+            selected={this.props.moveDate}
+            onChange={this.props.handleDateChange}
+          />
+        </div>
           <div className="col-6">
             <label className="label label-question">How big is your move?</label>
             <Slider
               min={1000}
               max={10000}
-              defaultValue={5000}
-              step={250}
+              defaultValue={this.props.moveSize}
+              step={500}
               handle={handleSize}
               onChange={(e) => this.props.update(e, 'moveSize')} />
-          </div>
-          <div className="col-6">
-            <label className="label">Move Date</label>
-            <DatePicker
-              className="input-field"
-              minDate={moment()}
-              selected={this.props.moveDate}
-              onChange={this.props.handleDateChange}
-            />
           </div>
         </div>
         <div className="row">

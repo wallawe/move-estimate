@@ -7,6 +7,10 @@ import CustomerDetail from './components/customer-detail';
 import 'react-datepicker/dist/react-datepicker.css';
 import './App.css';
 
+const ZIP_KEY = 'js-NmjJ8lE2M5EeaJD7UMpbJL7z6rTuPCa0vKEr8Pwt9YgPAQJag06lugF7kNN01acI';
+const ZIP_URL = 'https://www.zipcodeapi.com';
+
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -15,11 +19,12 @@ class App extends Component {
       showStep2: false,
       fromZip: '',
       toZip: '',
-      moveSize: '',
+      moveSize: 2500,
       moveDate: moment(),
       fullName: '',
       email: '',
       phoneNo: '',
+      moveDistance: 0,
       storageRequired: 'no',
       storageDuration: 6
     };
@@ -38,7 +43,6 @@ class App extends Component {
   }
 
   handleRadioChange(e) {
-
     this.setState({
       storageRequired: e.target.value
     });
@@ -53,11 +57,26 @@ class App extends Component {
     })
   }
 
+  setMoveDistance() {
+    const { fromZip, toZip } = this.state;
+    axios
+      .get(`${ZIP_URL}/rest/${ZIP_KEY}/distance.json/${fromZip}/${toZip}/mile`)
+      .then((res) => {
+        this.setState({
+          moveDistance: parseInt(res.data.distance, 10)
+        });
+      });
+  }
+
   changeStep(toStep, fromStep) {
     this.setState({
       [`showStep${toStep}`]: true,
       [`showStep${fromStep}`]: false,
     });
+
+    if (toStep === 2 && this.state.toZip.length) {
+      this.setMoveDistance();
+    }
   }
 
   submitForm() {

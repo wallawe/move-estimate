@@ -98,7 +98,6 @@ $gray-3: #333333;
 
   .input-field, .dropdown {
     border: 1px solid $gray-e;
-    border-bottom: 3px solid $gray-e;
     font-size: 16px;
     line-height: 1;
     padding: 15px 10px;
@@ -108,6 +107,10 @@ $gray-3: #333333;
     background: $white;
     border-radius: 3px;
     margin-bottom: 30px;
+
+    &:focus {
+      box-shadow: 0 2px 0 $gray-e;
+    }
   }
 
   .dropdown {
@@ -121,6 +124,16 @@ $gray-3: #333333;
     background-position: right 10px top 20px;
     background-size: 15px;
   }
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
 }
 
 .circle {
@@ -145,7 +158,7 @@ $gray-3: #333333;
   background: $aqua;
   color: $white;
   text-align: center;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 16px;
   border-radius: 3px;
 
@@ -154,7 +167,7 @@ $gray-3: #333333;
   }
 
   &:disabled {
-    background: #ccc;
+    background: #bbb;
     cursor: default;
   }
 
