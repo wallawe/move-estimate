@@ -60,6 +60,25 @@ class App extends Component {
     });
   }
 
+
+  localFunc(requiresStorage, sqft, incrementer) {
+    if (!sqft || !incrementer) {
+      console.log('Must provide all params');
+      return;
+    }
+
+    requiresStorage = requiresStorage === 'yes' ? true : false;
+
+    if (requiresStorage) {
+
+    } else {
+      const baseCost = 3150;
+      const multiplier = (sqft / 500) - 2;
+      const result = multiplier * incrementer + baseCost;
+      console.log(result)
+    }
+  }
+
   submitForm() {
     let requestInfo = {...this.state};
 
@@ -70,20 +89,45 @@ class App extends Component {
         requestInfo.storageDuration = 0;
     }
 
-    const options = {
-      url: 'http://www.findlayluxurymoving.com/quotes/new',
-      method: 'POST',
-      params: requestInfo
-    }
+    const { storageRequired, moveSize } = requestInfo;
 
-    axios
-      .request(options)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.localFunc(storageRequired, moveSize, 1400);
+    // const options = {
+    //   url: 'http://www.findlayluxurymoving.com/quotes/new',
+    //   method: 'POST', // patch/put (update)
+    //   params: requestInfo
+    // }
+    //
+    // axios
+    //   .request(options)
+    //   .then((res) => {
+    //     // local storage
+    //     // local no storage
+    //     // long distance storage
+    //     // long distance no storage
+    //
+    //     //
+    //     console.log(res);
+        //
+        // if (distanceBetweenZips < 500) {
+        //   if (storageRequired) {
+        //     localFunc(true,)
+        //   } else {
+        //     localFunc(false, sqft, 1400)
+        //   }
+        // } else {
+        //   if (storageRequired) {
+        //
+        //   } else {
+        //
+        //   }
+        // }
+        // make calculation based on whether or not it's interstate
+        // storage required?
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
   }
 
   render() {

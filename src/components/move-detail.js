@@ -98,7 +98,7 @@ class MoveDetail extends Component {
               min={1000}
               max={10000}
               defaultValue={5000}
-              step={250}
+              step={500}
               handle={handleSize}
               onChange={(e) => this.props.update(e, 'moveSize')} />
           </div>
